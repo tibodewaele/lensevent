@@ -148,7 +148,7 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; font-weight: 70
 .step__body { padding: 26px 28px 32px; flex: 1; display: flex; flex-direction: column; }
 .step h3 { font-size: 1.35rem; margin-bottom: 8px; }
 .step p { color: var(--muted); }
-.step__cta { margin-top: auto; align-self: flex-start; padding: 11px 22px; font-size: .9rem; }
+.step__cta { margin-top: auto; align-self: center; padding: 11px 22px; font-size: .9rem; }
 
 /* --- Template-embed -------------------------------------- */
 .template-embed { max-width: 1000px; margin: 36px auto 0; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow-soft); overflow: hidden; }

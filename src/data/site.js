@@ -43,10 +43,9 @@ export const pakketten = [
       { tekst: "250 prints inbegrepen", inbegrepen: true },
       { tekst: "Direct delen via SMS, QR-code of e-mail", inbegrepen: true },
       { tekst: "Digitaal album", inbegrepen: true },
-      { tekst: "Foto- & GIF-opties", inbegrepen: true },
       { tekst: "Gepersonaliseerde template", inbegrepen: true },
       { tekst: "Levering tot 100 km inbegrepen", inbegrepen: true },
-      { tekst: "Backdrop bij te huren (+€50)", inbegrepen: true },
+      { tekst: "Props en feestelijke attributen", inbegrepen: true },
     ],
   },
   {
@@ -62,8 +61,7 @@ export const pakketten = [
       { tekst: "Foto- & GIF-opties", inbegrepen: true },
       { tekst: "Gepersonaliseerde template", inbegrepen: true },
       { tekst: "Levering tot 100 km inbegrepen", inbegrepen: true },
-      { tekst: "Backdrop bij te huren (+€50)", inbegrepen: true },
-      { tekst: "Feestelijke attributen (optioneel extra)", inbegrepen: true },
+      { tekst: "Props en feestelijke attributen", inbegrepen: true },
     ],
   },
 ];
