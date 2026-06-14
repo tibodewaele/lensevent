@@ -16,7 +16,7 @@ import { stappen } from "../data/site.js";
           <div class="step__body">
             <h3>{s.titel}</h3>
             <p>{s.tekst}</p>
-            {s.cta && <a href={s.cta.url} class="btn btn--primary step__cta">{s.cta.label}</a>}
+            {s.cta && <div class="step__cta-wrap"><a href={s.cta.url} class="btn btn--primary step__cta">{s.cta.label}</a></div>}
           </div>
         </div>
       ))}
