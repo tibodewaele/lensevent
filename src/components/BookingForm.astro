@@ -14,7 +14,7 @@ const stadNaam = stad ? stad.naam : "";
           {stadNaam && ` in ${stadNaam}`} verder te personaliseren.
         </p>
 
-        <form class="form" data-endpoint={site.formspreeEndpoint} novalidate>
+        <form class="form" data-endpoint="/api/contact" novalidate>
           <div class="form__row">
             <div class="field">
               <label for="voornaam">Voornaam *</label>
@@ -91,14 +91,6 @@ const stadNaam = stad ? stad.naam : "";
         return;
       }
 
-      // Formspree nog niet ingesteld?
-      if (endpoint.includes("JOUW_ID_HIER")) {
-        statusEl.textContent =
-          "Bedankt! Het formulier is nog niet gekoppeld. Stel je Formspree-endpoint in src/data/site.js in (zie README).";
-        statusEl.classList.add("err");
-        return;
-      }
-
       const btn = form.querySelector("button[type=submit]");
       const original = btn.textContent;
       btn.textContent = "Versturen…";
@@ -107,7 +99,6 @@ const stadNaam = stad ? stad.naam : "";
       try {
         const res = await fetch(endpoint, {
           method: "POST",
-          headers: { Accept: "application/json" },
           body: new FormData(form),
         });
         if (res.ok) {

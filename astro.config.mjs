@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel/serverless';
 
-// https://astro.build
 export default defineConfig({
-  // Pas dit aan naar je eigen domein (gebruikt voor sitemap & canonical URLs)
   site: 'https://www.lensevent.be',
   outDir: process.env.LENS_OUTDIR || './dist',
+  output: 'hybrid',
+  adapter: vercel(),
 });
