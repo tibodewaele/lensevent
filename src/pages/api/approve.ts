@@ -31,7 +31,7 @@ export const GET: APIRoute = async ({ url }) => {
 
   try {
     await resend.emails.send({
-      from: 'Lens Event <noreply@lensevent.be>',
+      from: 'Lens Event <onboarding@resend.dev>',
       to: email,
       subject: 'Je boeking is bevestigd! 🎊 — Lens Event OOOH!',
       html: `

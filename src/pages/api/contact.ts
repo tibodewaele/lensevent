@@ -33,7 +33,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     // 1. Auto-reply naar de klant
     await resend.emails.send({
-      from: 'Lens Event <noreply@lensevent.be>',
+      from: 'Lens Event <onboarding@resend.dev>',
       to: email,
       subject: 'Je aanvraag is goed ontvangen — Lens Event OOOH!',
       html: `
@@ -99,7 +99,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // 2. Notificatie + goedkeuringsknop naar Tibo
     await resend.emails.send({
-      from: 'Lens Event <noreply@lensevent.be>',
+      from: 'Lens Event <onboarding@resend.dev>',
       to: 'contact@lensevent.be',
       subject: `📩 Nieuwe aanvraag: ${naam}${datum ? ' — ' + datumFormatted : ''}`,
       html: `
