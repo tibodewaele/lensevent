@@ -1,0 +1,17 @@
+---
+import { site } from "../data/site.js";
+---
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">LENS<span>EVENT</span></a>
+    <nav class="nav">
+      <div class="nav-links">
+        <a href="/#pakketten">Pakketten</a>
+        <a href="/#werkwijze">Hoe het werkt</a>
+        <a href="/#faq">FAQ</a>
+        <a href={site.telefoonHref} class="nav-phone">{site.telefoon}</a>
+      </div>
+      <a href="/#boeken" class="btn btn--primary header-cta">Boek nu</a>
+    </nav>
+  </div>
+</header>

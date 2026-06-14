@@ -1,0 +1,31 @@
+---
+import { faq, levertijden } from "../data/site.js";
+---
+<section class="section section--cream" id="faq">
+  <div class="container">
+    <div class="center">
+      <span class="eyebrow">Goed om te weten</span>
+      <h2 class="section-title">Veelgestelde vragen</h2>
+    </div>
+    <div class="faq">
+      {faq.map((f) => (
+        <details>
+          <summary>{f.vraag}</summary>
+          <p>{f.antwoord}</p>
+        </details>
+      ))}
+    </div>
+
+    <div class="levering">
+      <div class="levering__card section--dark" style="color:var(--text-on-dark)">
+        <h3>Levertijden</h3>
+        <ul class="levering__list">
+          {levertijden.tijden.map((t) => (
+            <li><span class="dag">{t.dag}</span><span>{t.uren}</span></li>
+          ))}
+        </ul>
+      </div>
+      <p class="levering__note" style="color:var(--muted)">{levertijden.toelichting}</p>
+    </div>
+  </div>
+</section>

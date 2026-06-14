@@ -1,0 +1,21 @@
+---
+import Base from "../layouts/Base.astro";
+import CityLanding from "../components/CityLanding.astro";
+import { steden } from "../data/steden.js";
+
+// Genereert automatisch één pagina per stad uit src/data/steden.js
+export function getStaticPaths() {
+  return steden.map((stad) => ({
+    params: { stad: stad.slug },
+    props: { stad },
+  }));
+}
+
+const { stad } = Astro.props;
+const title = `Photobooth huren in ${stad.naam} | Lens Event — OOOH!`;
+const description = `Photobooth huren in ${stad.naam}? Stijlvolle photobooth met onbeperkt professionele foto's en gepersonaliseerde template. Alles inbegrepen, levering in ${stad.naam} en omstreken.`;
+const canonical = `https://www.lensevent.be/photobooth-huren-${stad.slug}`;
+---
+<Base title={title} description={description} canonical={canonical}>
+  <CityLanding stad={stad} />
+</Base>

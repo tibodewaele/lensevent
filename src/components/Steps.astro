@@ -1,0 +1,25 @@
+---
+import { stappen } from "../data/site.js";
+---
+<section class="section section--cream" id="werkwijze">
+  <div class="container center">
+    <span class="eyebrow">Zo simpel is het</span>
+    <h2 class="section-title">In 3 stappen ready to party</h2>
+    <p class="section-intro">Van boeking tot het laatste kiekje: wij regelen alles, jij geniet.</p>
+    <div class="steps">
+      {stappen.map((s) => (
+        <div class="step">
+          <div class={`step__img ${s.vullend ? "step__img--cover" : ""}`}>
+            <img src={s.afbeelding} alt={s.titel} loading="lazy" />
+          </div>
+          <div class="step__nr">{s.nr}</div>
+          <div class="step__body">
+            <h3>{s.titel}</h3>
+            <p>{s.tekst}</p>
+            {s.cta && <a href={s.cta.url} class="btn btn--primary step__cta">{s.cta.label}</a>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

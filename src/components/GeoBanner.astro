@@ -1,0 +1,55 @@
+---
+// Toont automatisch een bannertje met de dichtstbijzijnde stad,
+// gebaseerd op de (benaderende) locatie van de bezoeker via zijn IP.
+// Werkt als progressive enhancement: faalt het, dan gebeurt er niets.
+import { steden } from "../data/steden.js";
+---
+<div class="geo-banner" id="geoBanner">
+  <span id="geoText"></span>
+  <button type="button" id="geoClose" aria-label="Sluiten">×</button>
+</div>
+
+<script define:vars={{ steden }}>
+  (async () => {
+    const banner = document.getElementById("geoBanner");
+    const textEl = document.getElementById("geoText");
+    const closeBtn = document.getElementById("geoClose");
+    if (!banner) return;
+
+    // Niet opnieuw tonen als de bezoeker hem deze sessie al wegklikte.
+    try { if (sessionStorage.getItem("geoDismiss")) return; } catch (e) {}
+
+    closeBtn.addEventListener("click", () => {
+      banner.classList.remove("show");
+      try { sessionStorage.setItem("geoDismiss", "1"); } catch (e) {}
+    });
+
+    const dist = (a, b, c, d) => {
+      const R = 6371, r = Math.PI / 180;
+      const dLat = (c - a) * r, dLng = (d - b) * r;
+      const x = Math.sin(dLat / 2) ** 2 +
+        Math.cos(a * r) * Math.cos(c * r) * Math.sin(dLng / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
+    };
+
+    try {
+      const res = await fetch("https://ipapi.co/json/");
+      if (!res.ok) return;
+      const geo = await res.json();
+      if (!geo.latitude || !geo.longitude) return;
+
+      let best = null, bestKm = Infinity;
+      for (const s of steden) {
+        const km = dist(geo.latitude, geo.longitude, s.lat, s.lng);
+        if (km < bestKm) { bestKm = km; best = s; }
+      }
+      // Enkel tonen als er een stad redelijk dichtbij ligt.
+      if (best && bestKm <= 60) {
+        textEl.innerHTML =
+          `📍 Photobooth huren in de buurt van ${best.naam}? ` +
+          `<a href="/photobooth-huren-${best.slug}">Bekijk photobooth huren in ${best.naam} →</a>`;
+        banner.classList.add("show");
+      }
+    } catch (e) { /* stil falen */ }
+  })();
+</script>

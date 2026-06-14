@@ -1,0 +1,29 @@
+---
+import { pakketten } from "../data/site.js";
+---
+<section class="section section--cream" id="pakketten">
+  <div class="container center">
+    <span class="eyebrow">Onze formules</span>
+    <h2 class="section-title">Eén vaste prijs, alles inbegrepen</h2>
+    <p class="section-intro">Geen verborgen kosten of dure upgrades. Kies de formule die bij jouw feest past.</p>
+    <div class="packages">
+      {pakketten.map((p) => (
+        <div class={`pkg ${p.populair ? "pkg--featured" : ""}`}>
+          {p.populair && <span class="pkg__tag">Meest gekozen</span>}
+          <h3>{p.naam}</h3>
+          <p class="pkg__desc">{p.omschrijving}</p>
+          <div class="pkg__price">
+            <span class="cur">€</span>{p.prijs}
+            <span class="btw">excl. btw</span>
+          </div>
+          <ul class="pkg__features">
+            {p.features.map((f) => (
+              <li><span class="check">✓</span> {f.tekst}</li>
+            ))}
+          </ul>
+          <a href="#boeken" class={`btn ${p.populair ? "btn--primary" : "btn--dark"}`}>Reserveer {p.naam}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

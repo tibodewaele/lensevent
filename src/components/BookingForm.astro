@@ -1,0 +1,126 @@
+---
+import { site, pakketten, backdrop } from "../data/site.js";
+const { stad = null } = Astro.props;
+const stadNaam = stad ? stad.naam : "";
+---
+<section class="section booking" id="boeken">
+  <div class="container">
+    <div class="booking__grid">
+      <div>
+        <span class="eyebrow">Boek hier jouw photobooth</span>
+        <h2 class="section-title">Klaar om herinneringen te maken?</h2>
+        <p class="section-intro" style="color:var(--muted-on-dark)">
+          Vul je gegevens in en we contacteren je in een flits via mail om jouw feest
+          {stadNaam && ` in ${stadNaam}`} verder te personaliseren.
+        </p>
+
+        <form class="form" data-endpoint={site.formspreeEndpoint} novalidate>
+          <div class="form__row">
+            <div class="field">
+              <label for="voornaam">Voornaam *</label>
+              <input id="voornaam" name="voornaam" required placeholder="Jouw voornaam" />
+            </div>
+            <div class="field">
+              <label for="achternaam">Achternaam *</label>
+              <input id="achternaam" name="achternaam" required placeholder="Jouw achternaam" />
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="field">
+              <label for="email">E-mail *</label>
+              <input id="email" name="email" type="email" required placeholder="naam@email.be" />
+            </div>
+            <div class="field">
+              <label for="telefoon">Telefoon *</label>
+              <input id="telefoon" name="telefoon" type="tel" required placeholder="04xx xx xx xx" />
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="field">
+              <label for="stad">Plaats van je feest</label>
+              <input id="stad" name="stad" value={stadNaam} placeholder="Bv. Gent" />
+            </div>
+            <div class="field">
+              <label for="datum">Datum van je feest</label>
+              <input id="datum" name="datum" type="date" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="bedrijf">Bedrijfsnaam (indien van toepassing)</label>
+            <input id="bedrijf" name="bedrijf" placeholder="Optioneel" />
+          </div>
+          <div class="field">
+            <label for="booth">Kies jouw booth *</label>
+            <select id="booth" name="booth" required>
+              <option value="" disabled selected>Maak een keuze…</option>
+              {pakketten.map((p) => (
+                <option value={p.naam}>{p.naam} — €{p.prijs} excl. btw</option>
+              ))}
+              <option value="Enkel backdrop huren">Enkel backdrop huren — €{backdrop.huurPrijs}</option>
+              <option value="Branded backdrop op maat">Branded backdrop op maat — €{backdrop.brandedPrijs}</option>
+              <option value="Nog niet zeker">Nog niet zeker — adviseer mij</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg">Verstuur mijn aanvraag</button>
+          <p class="form__status" role="status" aria-live="polite"></p>
+          <p class="form__note">We nemen binnen 24u contact op. Je gegevens worden enkel gebruikt om je aanvraag te behandelen.</p>
+        </form>
+      </div>
+      <div class="booking__media">
+        <img src="/images/website-boeken-realistisch.png" alt="Iemand boekt een photobooth op de Lens Event website" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector(".form");
+  if (form) {
+    const statusEl = form.querySelector(".form__status");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl.className = "form__status";
+      const endpoint = form.getAttribute("data-endpoint") || "";
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Formspree nog niet ingesteld?
+      if (endpoint.includes("JOUW_ID_HIER")) {
+        statusEl.textContent =
+          "Bedankt! Het formulier is nog niet gekoppeld. Stel je Formspree-endpoint in src/data/site.js in (zie README).";
+        statusEl.classList.add("err");
+        return;
+      }
+
+      const btn = form.querySelector("button[type=submit]");
+      const original = btn.textContent;
+      btn.textContent = "Versturen…";
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        if (res.ok) {
+          form.reset();
+          statusEl.textContent = "Bedankt! We hebben je aanvraag goed ontvangen en contacteren je snel.";
+          statusEl.classList.add("ok");
+        } else {
+          throw new Error("net");
+        }
+      } catch (err) {
+        statusEl.textContent =
+          "Er ging iets mis. Probeer opnieuw of mail ons rechtstreeks via contact@lensevent.be.";
+        statusEl.classList.add("err");
+      } finally {
+        btn.textContent = original;
+        btn.disabled = false;
+      }
+    });
+  }
+</script>

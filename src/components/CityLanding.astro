@@ -1,0 +1,23 @@
+---
+// Gedeelde landingspagina-opbouw, gebruikt door de homepage én elke stadspagina.
+import Hero from "./Hero.astro";
+import Steps from "./Steps.astro";
+import Video from "./Video.astro";
+import Packages from "./Packages.astro";
+import Backdrop from "./Backdrop.astro";
+import Comparison from "./Comparison.astro";
+import SocialProof from "./SocialProof.astro";
+import Faq from "./Faq.astro";
+import BookingForm from "./BookingForm.astro";
+
+const { stad = null } = Astro.props;
+---
+<Hero stad={stad} />
+<Steps />
+<Video />
+<SocialProof />
+<Packages />
+<Backdrop />
+<Comparison />
+<Faq />
+<BookingForm stad={stad} />

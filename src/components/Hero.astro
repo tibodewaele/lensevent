@@ -1,0 +1,48 @@
+---
+const { stad = null } = Astro.props;
+const titel = stad ? `Photobooth huren in ${stad.naam}` : "Photobooth huren in heel Vlaanderen";
+const plaatsLabel = stad ? stad.naam : "jouw regio";
+---
+<section class="hero">
+  <div class="hero__bg">
+    <video class="hero__video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="/images/hero-poster.jpg" aria-hidden="true">
+      <source src="/videos/hero.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="container">
+    <div class="hero__inner">
+      <span class="hero__badge">★ Alles inbegrepen — geen verrassingen</span>
+      <span class="hero__oooh">OOOH!</span>
+      <h1>{titel} die <em>iedereen</em> doet lachen</h1>
+      <p class="hero__sub">
+        Stijlvolle photobooth met onbeperkt professionele foto's, een volledig gepersonaliseerde
+        template en directe deelfunctie. Wij leveren in {plaatsLabel} en installeren alles voor je.
+      </p>
+      <div class="hero__cta">
+        <a href="#boeken" class="btn btn--primary btn--lg">Boek jouw photobooth</a>
+        <a href="#pakketten" class="btn btn--ghost btn--lg">Bekijk de pakketten</a>
+      </div>
+      <div class="hero__trust">
+        <span><span class="ic">✓</span> Onbeperkt DSLR-foto's</span>
+        <span><span class="ic">✓</span> Levering tot 100 km gratis</span>
+        <span><span class="ic">✓</span> Persoonlijke template</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Robuuste autoplay, ook in Safari/iOS: forceer muted + playsinline en probeer te spelen.
+  const v = document.querySelector(".hero__video");
+  if (v) {
+    v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    const tryPlay = () => { const p = v.play(); if (p) p.catch(() => {}); };
+    tryPlay();
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) tryPlay(); });
+    ["touchstart", "click", "scroll"].forEach((e) =>
+      window.addEventListener(e, tryPlay, { once: true, passive: true })
+    );
+  }
+</script>

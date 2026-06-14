@@ -1,0 +1,24 @@
+---
+import { vergelijking } from "../data/site.js";
+---
+<section class="section section--dark">
+  <div class="container center">
+    <span class="eyebrow">Waarom Lens Event</span>
+    <h2 class="section-title">Vergelijk en zie het verschil</h2>
+    <p class="section-intro">Onze all-in totaalformule bevat alles wat je nodig hebt. Vergelijk met traditionele providers.</p>
+    <div class="compare">
+      <div class="compare__row compare__head">
+        <div>&nbsp;</div>
+        <div class="h-lens">Wanneer je bij ons boekt</div>
+        <div>Traditionele providers</div>
+      </div>
+      {vergelijking.map((r) => (
+        <div class="compare__row">
+          <div class="c-kenmerk">{r.kenmerk}</div>
+          <div class="c-lens"><span class="mark">✓</span>{r.lens}</div>
+          <div class="c-anderen"><span class="mark">✕</span>{r.anderen}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

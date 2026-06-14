@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+
+const title = "Kies jouw template | Lens Event — OOOH!";
+const description =
+  "Ontdek en kies je gepersonaliseerde photobooth-template. Blader door de stijlen en kies wat bij jouw feest past.";
+const canonical = "https://www.lensevent.be/templates";
+---
+<Base title={title} description={description} canonical={canonical}>
+  <section class="section section--cream">
+    <div class="container center">
+      <span class="eyebrow">Templates</span>
+      <h2 class="section-title">Kies jouw template</h2>
+      <p class="section-intro">
+        Blader door onze templates en kies de stijl die bij jouw feest past. We personaliseren
+        je fotostrip daarna volledig in jouw kleuren of huisstijl.
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="template-embed">
+        <iframe
+          srcdoc="Loading..."
+          onload="this.removeAttribute('srcdoc')"
+          src="https://templatesbooth.com/widget-embed/?key=Mzk4Nw%3D%3D"
+          scrolling="yes"
+          width="100%"
+          height="2200px"
+          frameborder="0"
+          id="tb-widget-embed-a170354ea7"
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="container center" style="margin-top: 44px;">
+      <a href="/#boeken" class="btn btn--primary btn--lg">Boek jouw photobooth</a>
+      <p style="margin-top: 16px;"><a href="/" style="color: var(--gold-dark); font-weight: 600;">← Terug naar de homepage</a></p>
+    </div>
+  </section>
+</Base>

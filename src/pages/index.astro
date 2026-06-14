@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import GeoBanner from "../components/GeoBanner.astro";
+import CityLanding from "../components/CityLanding.astro";
+
+const title = "Photobooth huren in Vlaanderen | Lens Event — OOOH!";
+const description =
+  "Huur een stijlvolle photobooth bij Lens Event. Onbeperkt professionele foto's, gepersonaliseerde template en alles inbegrepen in één vaste prijs. Levering tot 100 km gratis.";
+const canonical = "https://www.lensevent.be/";
+---
+<Base title={title} description={description} canonical={canonical}>
+  <GeoBanner />
+  <CityLanding stad={null} />
+</Base>

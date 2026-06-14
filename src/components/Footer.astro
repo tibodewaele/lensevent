@@ -1,0 +1,39 @@
+---
+import { site } from "../data/site.js";
+import { steden } from "../data/steden.js";
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a href="/" class="logo">LENS<span>EVENT</span></a>
+        <p style="margin-top:14px;max-width:300px;">Stijlvolle photobooths & onvergetelijke herinneringen voor jouw feest. Samen herinneringen maken — OOOH!</p>
+        <div class="footer__social">
+          <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href={site.social.youtube} target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>{site.adres.straat}</li>
+          <li>{site.adres.postcode} {site.adres.gemeente}</li>
+          <li><a href={site.telefoonHref}>{site.telefoon}</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Photobooth huren in</h4>
+        <ul style="columns:2;">
+          {steden.map((s) => (
+            <li><a href={`/photobooth-huren-${s.slug}`}>{s.naam}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© {new Date().getFullYear()} {site.naam}. Alle rechten voorbehouden.</span>
+      <span>BTW excl. · Levering tot 100 km inbegrepen</span>
+    </div>
+  </div>
+</footer>
