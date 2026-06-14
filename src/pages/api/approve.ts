@@ -33,7 +33,7 @@ export const GET: APIRoute = async ({ url }) => {
     await resend.emails.send({
       from: 'Lens Event <noreply@lensevent.be>',
       to: email,
-      subject: 'Je boeking is bevestigd! 🎉 — Lens Event',
+      subject: 'Je boeking is bevestigd! 🎊 — Lens Event OOOH!',
       html: `
         <!DOCTYPE html>
         <html lang="nl">
@@ -47,35 +47,52 @@ export const GET: APIRoute = async ({ url }) => {
                     <p style="margin:0;font-family:Poppins,system-ui,sans-serif;font-weight:800;font-size:22px;color:#fff;letter-spacing:.04em;">
                       Lens <span style="color:#d8a24a;">Event</span>
                     </p>
-                    <p style="margin:6px 0 0;font-size:13px;color:#c8bcae;letter-spacing:.25em;text-transform:uppercase;">Boeking bevestigd</p>
+                    <p style="margin:6px 0 0;font-size:13px;color:#c8bcae;letter-spacing:.25em;text-transform:uppercase;">OOOH!</p>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding:36px 36px 28px;text-align:center;">
-                    <p style="margin:0 0 8px;font-size:48px;">🎉</p>
-                    <p style="margin:0 0 12px;font-family:Poppins,system-ui,sans-serif;font-size:22px;font-weight:700;color:#15110f;">
-                      Je boeking is bevestigd!
-                    </p>
-                    <p style="margin:0 0 28px;color:#7a6f64;font-size:16px;line-height:1.6;">
-                      Geweldig nieuws ${naam.split(' ')[0]}! Je boeking bij Lens Event is officieel bevestigd. We kunnen niet wachten om er een onvergetelijk feest van te maken. 🎊
+                  <td style="padding:36px 36px 32px;">
+                    <p style="margin:0 0 20px;font-family:Poppins,system-ui,sans-serif;font-size:20px;font-weight:700;color:#15110f;">
+                      Hallo ${naam},
                     </p>
 
-                    <table width="100%" cellpadding="0" cellspacing="0" style="background:#f7f1e8;border-radius:12px;padding:20px 24px;margin-bottom:28px;text-align:left;">
+                    <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#1c1714;">
+                      Bedankt voor je boeking van de OOOH! Photobooth. Wat een feest gaat dit worden! 🎊
+                    </p>
+
+                    <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#1c1714;">
+                      Super dat je hebt gekozen voor een premium template. Daarmee wordt jullie fotostrip echt uniek en helemaal op maat.
+                    </p>
+
+                    <p style="margin:0 0 8px;font-size:16px;line-height:1.7;color:#1c1714;">
+                      Je kan alvast hier een kijkje nemen in onze collectie:
+                    </p>
+
+                    <table cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
                       <tr><td>
-                        <p style="margin:0 0 12px;font-family:Poppins,system-ui,sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#b9842f;">Jouw boeking</p>
-                        ${booth  ? `<p style="margin:0 0 6px;font-size:15px;"><strong>Formule:</strong> ${booth}</p>` : ''}
-                        ${datum  ? `<p style="margin:0 0 6px;font-size:15px;"><strong>Datum:</strong> ${datumFormatted}</p>` : ''}
-                        ${stad   ? `<p style="margin:0;font-size:15px;"><strong>Locatie:</strong> ${stad}</p>` : ''}
+                        <a href="https://www.lensevent.be/templates" style="display:inline-block;background:#d8a24a;color:#15110f;font-family:Poppins,system-ui,sans-serif;font-weight:700;font-size:15px;padding:14px 28px;border-radius:999px;text-decoration:none;">
+                          Bekijk onze templates →
+                        </a>
                       </td></tr>
                     </table>
 
-                    <p style="margin:0 0 28px;color:#7a6f64;font-size:15px;line-height:1.6;text-align:left;">
-                      We nemen binnenkort contact op om alle details te bespreken. Heb je alvast vragen? Stuur ons een berichtje via <a href="https://wa.me/32492528448" style="color:#d8a24a;font-weight:600;">WhatsApp</a>.
+                    <p style="margin:0 0 24px;font-size:16px;line-height:1.7;color:#1c1714;">
+                      Kies je template en zorg ervoor dat hij helemaal afgestemd is op jouw feest. Vervolgens vul je het formulier in en druk je op bevestigen. De factuur zal je later via mail ontvangen.
                     </p>
 
-                    <p style="margin:0;font-size:15px;color:#1c1714;text-align:left;">
-                      Tot dan! 🎈<br>
-                      <strong>Tibo — Lens Event</strong>
+                    <p style="margin:0 0 28px;font-size:16px;line-height:1.7;color:#1c1714;">
+                      Indien je nog vragen hebt, aarzel niet om te mailen naar <a href="mailto:contact@lensevent.be" style="color:#b9842f;font-weight:600;">contact@lensevent.be</a>.
+                    </p>
+
+                    <p style="margin:0 0 6px;font-size:16px;line-height:1.7;color:#1c1714;">
+                      Tot binnenkort. We zullen er een prachtig feest van maken met prachtige herinneringen!
+                    </p>
+
+                    <p style="margin:24px 0 0;font-size:15px;line-height:1.8;color:#1c1714;">
+                      Met vriendelijke groeten<br><br>
+                      <strong>Tibo De Waele</strong><br>
+                      <a href="tel:+32492528448" style="color:#b9842f;text-decoration:none;">+32 492 528 448</a><br>
+                      <a href="mailto:contact@lensevent.be" style="color:#b9842f;text-decoration:none;">contact@lensevent.be</a>
                     </p>
                   </td>
                 </tr>
