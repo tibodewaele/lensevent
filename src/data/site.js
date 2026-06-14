@@ -26,8 +26,8 @@ export const site = {
 
 // --- De 3 stappen -------------------------------------------------
 export const stappen = [
-  { nr: "1", titel: "Boek jouw booth", tekst: "Vul het formulier in en kies je pakket. We contacteren je in een flits.", afbeelding: "/images/website-boeken-realistisch.png", vullend: true, cta: { label: "Boek jouw booth", url: "#boeken" } },
-  { nr: "2", titel: "Kies een template", tekst: "We personaliseren je fotostrip volledig in jouw stijl of huisstijl.", afbeelding: "/images/overshoulder-booth-closeup.png", vullend: true, cta: { label: "Ontdek onze templates", url: "/templates" } },
+  { nr: "1", titel: "Boek jouw booth", tekst: "Vul het formulier in en kies je pakket. We contacteren je in een flits.", afbeelding: "/images/website-boeken-realistisch.png", vullend: true, cta: { label: "Boek mijn booth", url: "#boeken" } },
+  { nr: "2", titel: "Kies een template", tekst: "We personaliseren je fotostrip volledig in jouw stijl of huisstijl.", afbeelding: "/images/overshoulder-booth-closeup.png", vullend: true, cta: { label: "Kies mijn template", url: "/templates" } },
   { nr: "3", titel: "Ready to party", tekst: "Wij leveren, installeren en zorgen dat alles vlekkeloos draait.", afbeelding: "/images/zomerfeest-booth.png", vullend: true },
 ];
 
