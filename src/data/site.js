@@ -9,7 +9,7 @@ export const site = {
   slogan: "OOOH! Samen herinneringen maken",
   // Formulier: vervang dit door je eigen Formspree-endpoint (zie README).
   // Tot dan toont het formulier een melding i.p.v. te verzenden.
-  formspreeEndpoint: "https://formspree.io/f/JOUW_ID_HIER",
+  formspreeEndpoint: "https://formspree.io/f/xojzybkr",
   telefoon: "+32 492 528 448",
   telefoonHref: "tel:+32492528448",
   email: "contact@lensevent.be",
