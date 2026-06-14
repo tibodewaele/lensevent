@@ -12,47 +12,6 @@ import { backdrop } from "../data/site.js";
   </div>
 
   <div class="container">
-    <div class="backdrop-grid">
-      <!-- Maatschets -->
-      <div class="backdrop-figure">
-        <svg viewBox="0 0 460 380" role="img" aria-label={`Backdrop ${backdrop.afmetingBreedte} bij ${backdrop.afmetingHoogte} centimeter`}>
-          <g fill="#b3a797">
-            <circle cx="70" cy="150" r="15" />
-            <path d="M52 178 h36 a8 8 0 0 1 8 8 v74 a6 6 0 0 1 -6 6 h-40 a6 6 0 0 1 -6 -6 v-74 a8 8 0 0 1 8 -8 z" />
-            <rect x="56" y="262" width="13" height="60" rx="5" />
-            <rect x="71" y="262" width="13" height="60" rx="5" />
-          </g>
-          <rect x="160" y="92" width="240" height="248" rx="16" fill="#1b1b1b" />
-          <polygon points="300,340 400,240 400,300 360,340" fill="#3a3a3a" />
-          <path d="M178 340 l-14 14 M382 340 l14 14" stroke="#8a8a8a" stroke-width="6" stroke-linecap="round" />
-          <line x1="160" y1="68" x2="400" y2="68" stroke="#b9842f" stroke-width="2" />
-          <line x1="160" y1="60" x2="160" y2="76" stroke="#b9842f" stroke-width="2" />
-          <line x1="400" y1="60" x2="400" y2="76" stroke="#b9842f" stroke-width="2" />
-          <text x="280" y="50" text-anchor="middle" font-family="Poppins, sans-serif" font-size="26" font-weight="700" fill="#1c1714">{backdrop.afmetingBreedte} cm</text>
-          <line x1="424" y1="92" x2="424" y2="340" stroke="#b9842f" stroke-width="2" />
-          <line x1="416" y1="92" x2="432" y2="92" stroke="#b9842f" stroke-width="2" />
-          <line x1="416" y1="340" x2="432" y2="340" stroke="#b9842f" stroke-width="2" />
-          <text x="442" y="224" text-anchor="middle" font-family="Poppins, sans-serif" font-size="26" font-weight="700" fill="#1c1714" transform="rotate(90 442 216)">{backdrop.afmetingHoogte} cm</text>
-        </svg>
-      </div>
-
-      <!-- Branded backdrop (aankoop) -->
-      <div class="backdrop-content">
-        <span class="backdrop-price">€{backdrop.brandedPrijs}</span>
-        <h3>Eigen branded backdrop</h3>
-        <p>
-          Voor bedrijven: jouw eigen backdrop, bedrukt met je logo's. Lichtgewicht, draagbaar en
-          eenvoudig te monteren — formaat {backdrop.afmetingBreedte} × {backdrop.afmetingHoogte} cm.
-        </p>
-        <p class="backdrop-uses-label">Ideaal voor:</p>
-        <ul class="backdrop-uses">
-          {backdrop.gebruik.map((g) => (<li><span class="check">✓</span> {g}</li>))}
-        </ul>
-        <p class="backdrop-note">Aankoop · {backdrop.levertijd}</p>
-        <a href="#boeken" class="btn btn--primary">Vraag je branded backdrop aan</a>
-      </div>
-    </div>
-
     <!-- Backdrop bijhuren + beschikbare stijlen -->
     <div class="backdrop-rental-card">
       <div class="backdrop-rental-card__intro">
@@ -75,6 +34,46 @@ import { backdrop } from "../data/site.js";
       </div>
       <div class="center">
         <a href="#boeken" class="btn btn--dark">Toevoegen aan je boeking</a>
+      </div>
+    </div>
+
+    <!-- Branded backdrop (aankoop) -->
+    <div class="backdrop-grid" style="margin-top: 50px;">
+      <div class="backdrop-figure">
+        <svg viewBox="0 0 460 380" role="img" aria-label={`Backdrop ${backdrop.afmetingBreedte} bij ${backdrop.afmetingHoogte} centimeter`}>
+          <g fill="#b3a797">
+            <circle cx="70" cy="150" r="15" />
+            <path d="M52 178 h36 a8 8 0 0 1 8 8 v74 a6 6 0 0 1 -6 6 h-40 a6 6 0 0 1 -6 -6 v-74 a8 8 0 0 1 8 -8 z" />
+            <rect x="56" y="262" width="13" height="60" rx="5" />
+            <rect x="71" y="262" width="13" height="60" rx="5" />
+          </g>
+          <rect x="160" y="92" width="240" height="248" rx="16" fill="#1b1b1b" />
+          <polygon points="300,340 400,240 400,300 360,340" fill="#3a3a3a" />
+          <path d="M178 340 l-14 14 M382 340 l14 14" stroke="#8a8a8a" stroke-width="6" stroke-linecap="round" />
+          <line x1="160" y1="68" x2="400" y2="68" stroke="#b9842f" stroke-width="2" />
+          <line x1="160" y1="60" x2="160" y2="76" stroke="#b9842f" stroke-width="2" />
+          <line x1="400" y1="60" x2="400" y2="76" stroke="#b9842f" stroke-width="2" />
+          <text x="280" y="50" text-anchor="middle" font-family="Poppins, sans-serif" font-size="26" font-weight="700" fill="#1c1714">{backdrop.afmetingBreedte} cm</text>
+          <line x1="424" y1="92" x2="424" y2="340" stroke="#b9842f" stroke-width="2" />
+          <line x1="416" y1="92" x2="432" y2="92" stroke="#b9842f" stroke-width="2" />
+          <line x1="416" y1="340" x2="432" y2="340" stroke="#b9842f" stroke-width="2" />
+          <text x="442" y="224" text-anchor="middle" font-family="Poppins, sans-serif" font-size="26" font-weight="700" fill="#1c1714" transform="rotate(90 442 216)">{backdrop.afmetingHoogte} cm</text>
+        </svg>
+      </div>
+
+      <div class="backdrop-content">
+        <span class="backdrop-price">€{backdrop.brandedPrijs}</span>
+        <h3>Eigen branded backdrop</h3>
+        <p>
+          Voor bedrijven: jouw eigen backdrop, bedrukt met je logo's. Lichtgewicht, draagbaar en
+          eenvoudig te monteren — formaat {backdrop.afmetingBreedte} × {backdrop.afmetingHoogte} cm.
+        </p>
+        <p class="backdrop-uses-label">Ideaal voor:</p>
+        <ul class="backdrop-uses">
+          {backdrop.gebruik.map((g) => (<li><span class="check">✓</span> {g}</li>))}
+        </ul>
+        <p class="backdrop-note">Aankoop · {backdrop.levertijd}</p>
+        <a href="#boeken" class="btn btn--primary">Vraag je branded backdrop aan</a>
       </div>
     </div>
   </div>
