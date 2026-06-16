@@ -92,6 +92,11 @@ export const prerender = false;
     }
     .status.ok { display: block; background: #d9ead3; color: #274e13; }
     .status.err { display: block; background: #f4cccc; color: #660000; }
+    .divider {
+      border: none;
+      border-top: 1.5px solid #e7ddcd;
+      margin: 36px 0;
+    }
   </style>
 </head>
 <body>
@@ -116,6 +121,33 @@ export const prerender = false;
       <button type="submit">Opslaan in sheet</button>
     </form>
     <div class="status" id="status"></div>
+
+    <hr class="divider" />
+
+    <h1>Nafeest-mail sturen</h1>
+    <p style="margin:0 0 20px;font-size:14px;color:#7a6f64;line-height:1.6;">
+      Vul de fotolink in. De mail wordt automatisch ingepland op 1 dag na het feest (of direct als die datum al voorbij is).
+    </p>
+
+    <form id="form2">
+      <label for="naam2">Volledige naam klant</label>
+      <input id="naam2" name="naam" required placeholder="Bv. Marie Janssen" />
+
+      <label for="email2">E-mailadres klant</label>
+      <input id="email2" name="email" type="email" required placeholder="klant@email.be" />
+
+      <label for="datum2">Datum van het feest</label>
+      <input id="datum2" name="datum" type="date" required />
+
+      <label for="fotolink">Link naar de foto's</label>
+      <input id="fotolink" name="fotolink" type="url" required placeholder="https://…" />
+
+      <label for="secret2">Wachtwoord</label>
+      <input id="secret2" name="secret" type="password" required placeholder="••••••••" />
+
+      <button type="submit" id="btn2">Verstuur nafeest-mail</button>
+    </form>
+    <div class="status" id="status2"></div>
   </div>
 
   <script>
@@ -149,6 +181,42 @@ export const prerender = false;
       } finally {
         btn.disabled = false;
         btn.textContent = 'Opslaan in sheet';
+      }
+    });
+
+    const form2 = document.getElementById('form2');
+    const status2El = document.getElementById('status2');
+    const btn2 = document.getElementById('btn2');
+
+    form2.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status2El.className = 'status';
+      btn2.disabled = true;
+      btn2.textContent = 'Versturen…';
+
+      try {
+        const res = await fetch('/api/send-afterevent', {
+          method: 'POST',
+          body: new FormData(form2),
+        });
+        const json = await res.json();
+        if (json.ok) {
+          const msg = json.scheduled
+            ? `Mail ingepland voor ${new Date(json.sendAt).toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' })} om 10:00.`
+            : 'Mail is direct verstuurd (feest was al voorbij).';
+          status2El.textContent = msg;
+          status2El.className = 'status ok';
+          form2.reset();
+        } else {
+          status2El.textContent = json.error || 'Er ging iets mis.';
+          status2El.className = 'status err';
+        }
+      } catch {
+        status2El.textContent = 'Netwerkfout. Probeer opnieuw.';
+        status2El.className = 'status err';
+      } finally {
+        btn2.disabled = false;
+        btn2.textContent = 'Verstuur nafeest-mail';
       }
     });
   </script>
