@@ -23,6 +23,17 @@ export const GET: APIRoute = async ({ url }) => {
 
   const { naam, email, booth, datum, stad } = booking;
 
+  // Update status in Google Sheets
+  try {
+    await fetch('https://script.google.com/macros/s/AKfycbz4ItVSILu0OIXk2Bn8HtdYXHr8dPpehOkS6Tj-aD_W5jaE1tahtbPdlc_B-0dAxwlQJw/exec', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ updateStatus: true, email, status: 'Bevestigd' }),
+    });
+  } catch (err) {
+    console.error('Sheets update fout:', err);
+  }
+
   const datumFormatted = datum
     ? new Date(datum).toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' })
     : '';

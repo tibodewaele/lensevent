@@ -18,6 +18,29 @@ export const POST: APIRoute = async ({ request }) => {
 
   const naam = `${voornaam} ${achternaam}`.trim();
 
+  const prijsMap: Record<string, string> = {
+    'Gold Photobooth': '€340',
+    'Luxe Photobooth': '€400',
+  };
+  const totaalprijs = prijsMap[booth] || '—';
+
+  // Sla op in Google Sheets
+  try {
+    await fetch('https://script.google.com/macros/s/AKfycbz4ItVSILu0OIXk2Bn8HtdYXHr8dPpehOkS6Tj-aD_W5jaE1tahtbPdlc_B-0dAxwlQJw/exec', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        naam, email, telefoon,
+        locatie: stad, datum, formule: booth,
+        template: '—', totaalprijs,
+        status: 'Aangevraagd',
+        opmerkingen,
+      }),
+    });
+  } catch (err) {
+    console.error('Sheets fout:', err);
+  }
+
   const bookingPayload = Buffer.from(JSON.stringify({
     naam, email, telefoon, stad, datum, bedrijf, booth, opmerkingen,
   })).toString('base64url');
