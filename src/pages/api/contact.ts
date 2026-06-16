@@ -26,7 +26,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   // Sla op in Google Sheets
   try {
-    await fetch('https://script.google.com/macros/s/AKfycbz5RuNnIk_AB1nBRvnHtiuz6lwkLK7t9kpQ48IGoKUAIALFlNC9UKUV_eIFm-1rAfO1Zw/exec', {
+    await fetch('https://script.google.com/macros/s/AKfycbzIB8fLlBCCZWa2oojJYMPeLykkRmwrShNRoluoGm52Rnqsd54UbyArdjPgQgqiAt-dsA/exec', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
