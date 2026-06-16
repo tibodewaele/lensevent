@@ -5,11 +5,7 @@ export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   const body = await request.json();
-  const { secret, naam, email, fotolink } = body;
-
-  if (secret !== import.meta.env.CRON_SECRET) {
-    return new Response(JSON.stringify({ ok: false }), { status: 401 });
-  }
+  const { naam, email, fotolink } = body;
 
   const voornaam = naam?.split(' ')[0] || naam;
   const resend = new Resend(import.meta.env.RESEND_API_KEY);
