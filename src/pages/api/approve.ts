@@ -25,7 +25,7 @@ export const GET: APIRoute = async ({ url }) => {
 
   // Update status in Google Sheets
   try {
-    await fetch('https://script.google.com/macros/s/AKfycbz4ItVSILu0OIXk2Bn8HtdYXHr8dPpehOkS6Tj-aD_W5jaE1tahtbPdlc_B-0dAxwlQJw/exec', {
+    await fetch('https://script.google.com/macros/s/AKfycbyCvbCHTTHBrWZX-VwWMV5DBBoiRGNGHD7TSzB5fKjRdyfbHl88I4HG7cDgP6md-mO3tw/exec', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ updateStatus: true, email, status: 'Bevestigd' }),
