@@ -47,6 +47,7 @@ export const POST: APIRoute = async ({ request }) => {
   })).toString('base64url');
 
   const approvalUrl = `https://www.lensevent.be/api/approve?data=${bookingPayload}`;
+  const rejectUrl   = `https://www.lensevent.be/api/reject?data=${bookingPayload}`;
 
   const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
@@ -167,11 +168,18 @@ export const POST: APIRoute = async ({ request }) => {
                     </p>
 
                     <table cellpadding="0" cellspacing="0" style="width:100%;">
-                      <tr><td align="center">
-                        <a href="${approvalUrl}" style="display:inline-block;background:#d8a24a;color:#15110f;font-family:Poppins,system-ui,sans-serif;font-weight:700;font-size:16px;padding:16px 36px;border-radius:999px;text-decoration:none;">
-                          ✓ Bevestig de boeking van ${voornaam}
-                        </a>
-                      </td></tr>
+                      <tr>
+                        <td style="padding-right:12px;">
+                          <a href="${approvalUrl}" style="display:inline-block;background:#d8a24a;color:#15110f;font-family:Poppins,system-ui,sans-serif;font-weight:700;font-size:16px;padding:16px 36px;border-radius:999px;text-decoration:none;">
+                            ✓ Bevestig boeking
+                          </a>
+                        </td>
+                        <td>
+                          <a href="${rejectUrl}" style="display:inline-block;background:#cc3333;color:#fff;font-family:Poppins,system-ui,sans-serif;font-weight:700;font-size:16px;padding:16px 36px;border-radius:999px;text-decoration:none;">
+                            ✕ Weiger boeking
+                          </a>
+                        </td>
+                      </tr>
                     </table>
                   </td>
                 </tr>
