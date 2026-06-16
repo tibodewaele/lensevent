@@ -219,6 +219,14 @@ export const GET: APIRoute = async ({ url }) => {
                       Tot binnenkort. We zullen er een prachtig feest van maken met prachtige herinneringen!
                     </p>
 
+                    <table width="100%" cellpadding="0" cellspacing="0" style="background:#fff3cd;border-radius:12px;padding:18px 22px;margin:24px 0;">
+                      <tr><td>
+                        <p style="margin:0;font-size:15px;line-height:1.7;color:#7a5c00;">
+                          <strong>BELANGRIJK:</strong> Binnen de 7 dagen zal je van ons een factuur ontvangen. De bestelling is pas compleet wanneer de factuur is overgemaakt. Wanneer wij na 14 dagen nog geen betaling ontvangen hebben valt jouw slot weer open.
+                        </p>
+                      </td></tr>
+                    </table>
+
                     <p style="margin:24px 0 0;font-size:15px;line-height:1.8;color:#1c1714;">
                       Met vriendelijke groeten<br><br>
                       <strong>Tibo De Waele</strong><br>
