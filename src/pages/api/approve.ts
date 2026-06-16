@@ -53,13 +53,13 @@ export const GET: APIRoute = async ({ url }) => {
     reminderDate.setDate(reminderDate.getDate() - 14);
     reminderDate.setHours(9, 0, 0, 0);
 
-    if (reminderDate > new Date()) {
-      try {
+    const sendAt = reminderDate > new Date() ? reminderDate.toISOString() : undefined;
+    try {
         await resend.emails.send({
           from: 'Lens Event <noreply@lensevent.be>',
           to: email,
           subject: `Nog 2 weken tot jullie feest! 🎉 — Lens Event OOOH!`,
-          scheduledAt: reminderDate.toISOString(),
+          ...(sendAt ? { scheduledAt: sendAt } : {}),
           html: `
             <!DOCTYPE html>
             <html lang="nl">
@@ -158,7 +158,6 @@ export const GET: APIRoute = async ({ url }) => {
       } catch (err) {
         console.error('Reminder email schedule fout:', err);
       }
-    }
   }
 
   try {
