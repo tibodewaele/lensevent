@@ -35,6 +35,7 @@ export const POST: APIRoute = async ({ request }) => {
         template: '—', totaalprijs,
         status: 'Aangevraagd',
         opmerkingen,
+        fotoshareLink: '',
       }),
     });
   } catch (err) {
