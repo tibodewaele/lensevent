@@ -14,15 +14,23 @@ export const POST: APIRoute = async ({ request }) => {
   const datum     = (data.get('datum')      as string) || '';
   const bedrijf   = (data.get('bedrijf')    as string) || '';
   const booth     = (data.get('booth')      as string) || '';
-  const opmerkingen = (data.get('opmerkingen') as string) || '';
+  const opmerkingen    = (data.get('opmerkingen')   as string) || '';
+  const kortingscode   = ((data.get('kortingscode') as string) || '').toUpperCase().trim();
 
   const naam = `${voornaam} ${achternaam}`.trim();
 
-  const prijsMap: Record<string, string> = {
-    'Gold Photobooth': '€340',
-    'Luxe Photobooth': '€400',
+  const now = new Date();
+  const zomerStart = new Date('2026-07-01');
+  const zomerEind  = new Date('2026-08-31');
+  const isZomer = kortingscode === 'ZOMER26' && now >= zomerStart && now <= zomerEind;
+
+  const basisprijzen: Record<string, number> = {
+    'Gold Photobooth': 340,
+    'Luxe Photobooth': 400,
   };
-  const totaalprijs = prijsMap[booth] || '—';
+  const basis = basisprijzen[booth];
+  const prijs = basis ? (isZomer ? Math.round(basis * 0.8) : basis) : null;
+  const totaalprijs = prijs ? `€${prijs}${isZomer ? ' (ZOMER26 -20%)' : ''}` : '—';
 
   // Sla op in Google Sheets
   try {
