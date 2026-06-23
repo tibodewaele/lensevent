@@ -188,6 +188,31 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; font-weight: 70
 .gallery .tall { grid-row: span 2; height: 100%; }
 @media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, 1fr); } .gallery img { height: 200px; } .gallery .tall { grid-row: span 1; } }
 
+/* --- Pakketten scene (decoratieve figuren) --------------- */
+.packages-scene { position: relative; overflow: hidden; }
+.packages-scene__left,
+.packages-scene__right {
+  position: absolute;
+  bottom: 0;
+  height: 80%;
+  max-height: 560px;
+  width: auto;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.packages-scene__left  { left: 0; transform: scaleX(-1); }
+.packages-scene__right { right: 0; }
+.packages-scene .container { position: relative; z-index: 1; }
+@media (max-width: 1200px) {
+  .packages-scene__left,
+  .packages-scene__right { height: 60%; }
+}
+@media (max-width: 900px) {
+  .packages-scene__left,
+  .packages-scene__right { display: none; }
+}
+
 /* --- Pakketten ------------------------------------------- */
 .packages { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 48px; align-items: start; }
 .pkg {
